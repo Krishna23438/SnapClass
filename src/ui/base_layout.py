@@ -18,7 +18,7 @@ def style_background_home():
             """,unsafe_allow_html=True)
 
 
-def style_base_dashboard():
+def style_background_dashboard():
   st.markdown("""
         <style>
               .stApp{
@@ -30,6 +30,7 @@ def style_base_dashboard():
             """,unsafe_allow_html=True)
 
 def style_base_layout():
+# asdasd
   st.markdown("""
         <style>
               

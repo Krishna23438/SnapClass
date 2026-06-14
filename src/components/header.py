@@ -12,9 +12,29 @@ def header_home():
    st.markdown(f"""
         
       
-        <div style="display:flex;flex-direction:column; align-items:center;justify-content:center;margin-bottom:30px">
-            <img src="data:image/jpeg;base64,{encoded}" height="100">
+        <div style="display:flex;flex-direction:column; align-items:center;justify-content:center;margin-bottom:30px;margin-top:30px">
+            <img src="data:image/jpeg;base64,{encoded}" height="100px"/>
             <h1 style ='text-align:center; color:#E0E3FF'>SNAP<br/> CLASS </h1>
+        </div>
+        
+
+
+        """,unsafe_allow_html=True)
+
+
+def header_dashboard():
+   logo_path = Path(__file__).parent.parent / "logo.jpg"
+   
+
+   with open(logo_path, "rb") as img_file:
+        encoded = base64.b64encode(img_file.read()).decode()
+
+   st.markdown(f"""
+        
+      
+        <div style="display:flex; align-items:center;justify-content:center;gap:10px;">
+            <img src="data:image/jpeg;base64,{encoded}" height="85px;"/>
+            <h2 style ='text-align:left; color:#5865F2'>SNAP<br/>CLASS </h2>
         </div>
         
 
