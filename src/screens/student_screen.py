@@ -36,7 +36,7 @@ def student_screen():
     photo_source = st.camera_input("Position your face in the center")
 
     if photo_source:
-        img = np.array(Image.open())
+        img = np.array(Image.open(photo_source))
         with st.spinner("Ai is scanning..."):
             detected, all_ids, nums_faces = predict_attendance(img)
 
