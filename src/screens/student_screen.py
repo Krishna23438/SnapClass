@@ -4,9 +4,9 @@ from src.components.header import header_dashboard
 from src.components.footer import footer_dashboard
 from PIL import Image
 import numpy as np
-from src.pipelines.face_pipeline import predict_attendance, get_face_embeddings
+from src.pipelines.face_pipeline import predict_attendance, get_face_embeddings,train_classifier
 from src.pipelines.voice_pipeline import get_voice_embedding
-from src.database.db import get_all_students
+from src.database.db import get_all_students,create_student
 import time
 
 def student_dashboard():
@@ -82,7 +82,26 @@ def student_screen():
                             img = np.array(Image.open(photo_source))
                             encodings = get_face_embeddings(img)
                             if encodings:
-                                face_emb = encodings[0].tolist
+                                face_emb = encodings[0].tolist()
+
+                                voice_emb = None
+                                if audio_data:
+                                    voice_emb = get_voice_embedding(audio_data.read())
+
+                                response_data = create_student(new_name, face_embedding=face_emb,voice_embedding=voice_emb)
+
+                                if response_data:
+                                    train_classifier()
+
+                                    st.session_state.is_logged_in = True
+                                    st.session_state.user_role = 'student'
+                                    st.session_state.student_data = response_data(0)
+                                    st.toast(f"Profile Created! Hi {new_name}!")
+                                    time.sleep(1)
+                                    st.rerun()
+                                else:
+                                    st.error("Couldn't capture your facial features for registration")
+
                             else:
                                 st.warning("Please enter your name!")
 
