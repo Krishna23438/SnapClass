@@ -22,7 +22,7 @@ def style_background_dashboard():
   st.markdown("""
         <style>
               .stApp{
-                background:#E0E3FF !important;
+                background-color:#E0E3FF !important;
               }
         </style>  
 
@@ -39,9 +39,9 @@ def style_base_layout():
             @import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Baloo+Bhaina+2:wght@400..800&family=Climate+Crisis:YEAR@1979&family=Outfit:wght@100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
               
             /* hide Top Bar of streamlit*/
-              #MainMenu,header, footer{
-                visibility:hidden;
-              }
+              # #MainMenu,header, footer{
+              #   visibility:hidden;
+              # }
               .block-container{
                   padding-top:1.5rem !important;
               }
@@ -66,21 +66,21 @@ def style_base_layout():
 
               button{
                   border-radius: 1.5rem !important;
-                  background: #5865F2 !important;
+                  background-color: #5865F2 !important;
                   color: white !important;
                   padding: 10px 20px !important
                   tansition: transform 0.25s ease-in-out !important;
               }
               button[kind="secondary"]{
                   border-radius: 1.5rem !important;
-                  background: #EB459E !important;
+                  background-color: #EB459E !important;
                   color: white !important;
                   padding: 10px 20px !important
                   tansition: transform 0.25s ease-in-out !important;
               }
               button[kind="tertiary"]{
                   border-radius: 1.5rem !important;
-                  background: black !important;
+                  background-color: black !important;
                   color: white !important;
                   padding: 10px 20px !important
                   tansition: transform 0.25s ease-in-out !important;
