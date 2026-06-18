@@ -35,7 +35,7 @@ def student_screen():
 
     photo_source = st.camera_input("Position your face in the center")
 
-    if photo_source:
+    if photo_source is not None:
         img = np.array(Image.open(photo_source))
         with st.spinner("Ai is scanning..."):
             detected, all_ids, nums_faces = predict_attendance(img)
@@ -51,9 +51,9 @@ def student_screen():
                     student = next((s for s in all_students if s['student_id'] == student_id),None)
 
                     if student:
-                        st.session_state.is_logged_in = True
-                        st.session_state.user_role = 'student'
-                        st.session_state.student_data = student
+                        st.session_state["is_logged_in"] = True
+                        st.session_state["user_role"] = 'student'
+                        st.session_state["student_data"] = student
                         st.toast(f"Welcome Back {student['name']}")
                         time.sleep(1)
                         st.rerun()
@@ -93,9 +93,9 @@ def student_screen():
                                 if response_data:
                                     train_classifier()
 
-                                    st.session_state.is_logged_in = True
-                                    st.session_state.user_role = 'student'
-                                    st.session_state.student_data = response_data(0)
+                                    st.session_state["is_logged_in"] = True
+                                    st.session_state["user_role"] = 'student'
+                                    st.session_state["student_data"] = response_data[0]
                                     st.toast(f"Profile Created! Hi {new_name}!")
                                     time.sleep(1)
                                     st.rerun()

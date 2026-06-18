@@ -11,7 +11,7 @@ def load_dlib_models():
   detector = dlib.get_frontal_face_detector()  #it gives the no of faces and their positions in the picture
 
   sp = dlib.shape_predictor(
-    face_recognition_models.pose_predictor_model_location
+    face_recognition_models.pose_predictor_model_location()
   )
 
   facerec = dlib.face_recognition_model_v1(
@@ -30,7 +30,7 @@ def get_face_embeddings(image_np):
     shape = sp(image_np, face)
     face_descriptor = facerec.compute_face_descriptor(image_np, shape, 1) #128 embedding
 
-    encodings.appen(np.array(face_descriptor))
+    encodings.append(np.array(face_descriptor))
   return encodings
 
 @st.cache_resource
@@ -39,6 +39,7 @@ def get_trained_model():
   y = []
 
   student_db  = get_all_students()
+
 
   if not student_db:
     return False
@@ -83,7 +84,7 @@ def predict_attendance(class_image_np):
   all_students = sorted(list(set(y_train)))
 
   for encoding in encodings:
-    if len(all_students>=2):
+    if len(all_students)>=2:
       predicted_id = int(clf.predict([encoding])[0])
     else:
       predicted_id = int(all_students[0])
@@ -96,4 +97,4 @@ def predict_attendance(class_image_np):
 
     if best_match_score <= resemblance_threshold:
       detected_student[predicted_id] = True
-  return detected_student, all_students, len(encoding)
+  return detected_student, all_students, len(encodings)
