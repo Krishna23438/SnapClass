@@ -3,6 +3,7 @@ from src.ui.base_layout import style_background_dashboard,style_base_layout
 from src.components.header import header_dashboard
 from src.components.footer import footer_dashboard
 from src.database.db import check_teacher_exists,create_teacher,teacher_login
+from src.components.dialog_create_subject import create_subject_dialog
 
 def teacher_screen():
 
