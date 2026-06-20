@@ -6,13 +6,14 @@ from PIL import Image
 import numpy as np
 from src.pipelines.face_pipeline import predict_attendance, get_face_embeddings,train_classifier
 from src.pipelines.voice_pipeline import get_voice_embedding
-from src.database.db import get_all_students,create_student
+from src.database.db import get_all_students,create_student, get_student_subjects, get_student_attendance
 import time
 
 from src.components.dialog_enroll import enroll_dialog
 
 def student_dashboard():
     student_data = st.session_state.student_data
+    student_id = student_data['student_id']
     c1, c2 = st.columns(2, vertical_alignment='center', gap='xxlarge')
     with c1:
         header_dashboard()
@@ -31,6 +32,12 @@ def student_dashboard():
     with c2:
         if st.button('Enroll in Subject', type='primary',width='stretch'):
             enroll_dialog()
+
+    st.divider()
+
+    with st.spinner('Loading your enrolled subjects..'):
+        subjects = get_student_subjects(student_id)
+        logs = get_student_attendance(student_id)
 
     footer_dashboard()
 
