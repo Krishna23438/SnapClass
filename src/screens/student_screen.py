@@ -9,8 +9,30 @@ from src.pipelines.voice_pipeline import get_voice_embedding
 from src.database.db import get_all_students,create_student
 import time
 
+from src.components.dialog_enroll import enroll_dialog
+
 def student_dashboard():
-    st.header('Dashboard Here!')
+    student_data = st.session_state.student_data
+    c1, c2 = st.columns(2, vertical_alignment='center', gap='xxlarge')
+    with c1:
+        header_dashboard()
+    with c2:
+        st.subheader(f"""Welcome , {student_data['name']}""")
+        if st.button("Logout", type='secondary', key='logoutbtn', shortcut="control+backspace"):
+            st.session_state['is_login_type'] = False
+            del st.session_state.student_data
+            st.rerun()
+
+    st.space()
+
+    c1,c2 = st.columns(2)
+    with c1:
+        st.header('Your Enrolled Subjects')
+    with c2:
+        if st.button('Enroll in Subject', type='primary',width='stretch'):
+            enroll_dialog()
+
+    footer_dashboard()
 
 
 def student_screen():
