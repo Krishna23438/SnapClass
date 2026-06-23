@@ -113,6 +113,28 @@ def teacher_tab_take_attendance():
 
     st.divider()
 
+    if st.session_state.attendance_images:
+        st.header('Added Photos')
+        gallery_cols = st.columns(4)
+
+        for idx , img in enumerate(st.session_state.attendance_images):
+            with gallery_cols[idx % 4]:
+                st.image(img, width='stretch', caption=f"Photo {idx+1}")
+
+        c1, c2, c3 = st.columns(3)
+
+        with c1:
+            if st.button('Clear all photos',width='stretch',type='tertiary',icon=':material/delete:'):
+                st.session_state.attendance_images = []
+                st.rerun()
+
+        with c2:
+            has_photos= bool(st.session_state.attendace_images)
+            if st.button('Run face Analysis', width='stretch',type='secondary',icon=':material/analytics:'):
+                with st.spinner('Deep scanning classroom photos...'):
+                    all_detected_id = {}
+
+
 
 
 def teacher_tab_manage_subjects():
