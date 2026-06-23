@@ -7,6 +7,7 @@ from src.components.dialog_create_subject import create_subject_dialog
 from src.components.subject_card import subject_card
 from src.components.dialog_share_subject import share_subject_dialog
 from src.components.dialog_add_photo import add_photos_dialog
+import numpy as np
 
 def teacher_screen():
 
@@ -133,6 +134,9 @@ def teacher_tab_take_attendance():
             if st.button('Run face Analysis', width='stretch',type='secondary',icon=':material/analytics:'):
                 with st.spinner('Deep scanning classroom photos...'):
                     all_detected_id = {}
+
+                    for idx, img in enumerate(st.session_state.attendance_images):
+                        img_np = np.array(img.convert('RGB'))
 
 
 
