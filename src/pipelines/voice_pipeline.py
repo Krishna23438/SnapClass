@@ -43,7 +43,7 @@ def indentify_speaker(new_embedding, candidates_dict, threshold = 0.65):
     return None, best_score
   
 
-  def process_bulk_sudio(audio_bytes, candidates_dict, threshold=0.5):
+def process_bulk_audio(audio_bytes, candidates_dict, threshold=0.5):
     try:
       encoder = load_voice_encoder()
 
